@@ -1,12 +1,12 @@
 import { useState } from "react";
 
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
 
 import "./sign-up-form.styles.scss";
 
@@ -20,8 +20,6 @@ const defaultFormFieleds = {
 const SignUpForm = () => {
   const [formFieleds, setFormFieleds] = useState(defaultFormFieleds);
   const { displayName, email, password, confirmPassword } = formFieleds;
-
-  console.log(formFieleds);
 
   const resetFormFieleds = () => {
     setFormFieleds(defaultFormFieleds);
@@ -40,6 +38,7 @@ const SignUpForm = () => {
         email,
         password
       );
+
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFieleds();
     } catch (error) {
@@ -96,9 +95,7 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <Button buttonType="inverted" type="submit">
-          Sign Up
-        </Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
