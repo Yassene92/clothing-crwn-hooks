@@ -7,6 +7,7 @@ const SHOP_DATA = [
         name: "Brown Brim",
         imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
         price: 25,
+        
       },
       {
         id: 2,
