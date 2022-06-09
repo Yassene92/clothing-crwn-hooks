@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
+import { AuthError } from "firebase/auth";
 import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
@@ -28,15 +29,14 @@ const SignInForm = () => {
     dispatch(googleSignInStart());
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       dispatch(emailSignInStart(email, password));
-
       resetFormFieleds();
     } catch (error) {
-      switch (error.code) {
+      switch ((error as AuthError).code) {
         case "auth/user-not-found":
           alert("no user associated with this email");
           break;
@@ -49,7 +49,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormFieleds({ ...formFieleds, [name]: value });
