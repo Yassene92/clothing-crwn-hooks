@@ -27,7 +27,7 @@ import {
 import { Category } from "../../store/categories/category.types";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: "clothing-crwnv2.firebaseapp.com",
   projectId: "clothing-crwnv2",
   storageBucket: "clothing-crwnv2.appspot.com",
